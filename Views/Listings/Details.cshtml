@@ -1,0 +1,146 @@
+﻿@model AutosExchange.Models.Listing
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Listing</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.VIN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VIN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Year)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Year)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Make)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Make)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Model)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Model)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Trim)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Trim)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KM)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.isNewCar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.isNewCar)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CarType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CarType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Color)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Color)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Drivetrain)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Drivetrain)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FuelType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FuelType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Transmission)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Transmission)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FuelEconomy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FuelEconomy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.isAvailable)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.isAvailable)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SoldPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SoldPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lister.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lister.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ListingId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

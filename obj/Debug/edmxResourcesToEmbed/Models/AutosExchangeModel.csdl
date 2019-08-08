@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AutosExchangeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Lister">
+    <Key>
+      <PropertyRef Name="ListerId" />
+    </Key>
+    <Property Name="ListerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Province" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DealerWebsite" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Listings" Relationship="Self.ListerId" FromRole="Lister" ToRole="Listing" />
+  </EntityType>
+  <EntityType Name="Listing">
+    <Key>
+      <PropertyRef Name="ListingId" />
+    </Key>
+    <Property Name="ListingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ListerId" Type="Int32" Nullable="false" />
+    <Property Name="VIN" Type="String" MaxLength="17" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Year" Type="Int32" Nullable="false" />
+    <Property Name="Make" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Trim" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="KM" Type="Int32" Nullable="false" />
+    <Property Name="isNewCar" Type="Boolean" Nullable="false" />
+    <Property Name="CarType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Drivetrain" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FuelType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Transmission" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FuelEconomy" Type="Double" />
+    <Property Name="isAvailable" Type="Boolean" Nullable="false" />
+    <Property Name="SoldPrice" Type="Double" />
+    <NavigationProperty Name="Lister" Relationship="Self.ListerId" FromRole="Listing" ToRole="Lister" />
+  </EntityType>
+  <Association Name="ListerId">
+    <End Role="Lister" Type="Self.Lister" Multiplicity="1" />
+    <End Role="Listing" Type="Self.Listing" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lister">
+        <PropertyRef Name="ListerId" />
+      </Principal>
+      <Dependent Role="Listing">
+        <PropertyRef Name="ListerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AutosExchangeEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Listers" EntityType="Self.Lister" />
+    <EntitySet Name="Listings" EntityType="Self.Listing" />
+    <AssociationSet Name="ListerId" Association="Self.ListerId">
+      <End Role="Lister" EntitySet="Listers" />
+      <End Role="Listing" EntitySet="Listings" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

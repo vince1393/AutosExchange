@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AutosExchangeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Lister">
+    <Key>
+      <PropertyRef Name="ListerId" />
+    </Key>
+    <Property Name="ListerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="Phone" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="Address" Type="varchar" MaxLength="50" />
+    <Property Name="City" Type="varchar" MaxLength="50" />
+    <Property Name="Province" Type="varchar" MaxLength="50" />
+    <Property Name="DealerWebsite" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Listing">
+    <Key>
+      <PropertyRef Name="ListingId" />
+    </Key>
+    <Property Name="ListingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ListerId" Type="int" Nullable="false" />
+    <Property Name="VIN" Type="varchar" MaxLength="17" Nullable="false" />
+    <Property Name="Year" Type="int" Nullable="false" />
+    <Property Name="Make" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Model" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Trim" Type="varchar" MaxLength="50" />
+    <Property Name="KM" Type="int" Nullable="false" />
+    <Property Name="isNewCar" Type="bit" Nullable="false" />
+    <Property Name="CarType" Type="varchar" MaxLength="50" />
+    <Property Name="Color" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Drivetrain" Type="varchar" MaxLength="50" />
+    <Property Name="FuelType" Type="varchar" MaxLength="50" />
+    <Property Name="Transmission" Type="varchar" MaxLength="50" />
+    <Property Name="FuelEconomy" Type="float" />
+    <Property Name="isAvailable" Type="bit" Nullable="false" />
+    <Property Name="SoldPrice" Type="float" />
+  </EntityType>
+  <Association Name="ListerId">
+    <End Role="Lister" Type="Self.Lister" Multiplicity="1" />
+    <End Role="Listing" Type="Self.Listing" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lister">
+        <PropertyRef Name="ListerId" />
+      </Principal>
+      <Dependent Role="Listing">
+        <PropertyRef Name="ListerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AutosExchangeModelStoreContainer">
+    <EntitySet Name="Lister" EntityType="Self.Lister" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Listing" EntityType="Self.Listing" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="ListerId" Association="Self.ListerId">
+      <End Role="Lister" EntitySet="Lister" />
+      <End Role="Listing" EntitySet="Listing" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
