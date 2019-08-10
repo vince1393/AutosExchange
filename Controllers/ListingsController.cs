@@ -7,18 +7,22 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using AutosExchange.Models;
+using AutosExchange.Extensions;
+using Microsoft.AspNet.Identity;
 
 namespace AutosExchange.Controllers
 {
     public class ListingsController : Controller
     {
-        private AutosExchangeEntities db = new AutosExchangeEntities();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Listings
         public ActionResult Index()
         {
-            var listings = db.Listings.Include(l => l.Lister);
-            return View(listings.ToList());
+            var currentUser = User.Identity.GetUserId();
+            var listings = db.Listings.Where(l=> l.ListerId == currentUser);
+             return View(listings.ToList());
+            //return View();
         }
 
         // GET: Listings/Details/5
@@ -39,7 +43,6 @@ namespace AutosExchange.Controllers
         // GET: Listings/Create
         public ActionResult Create()
         {
-            ViewBag.ListerId = new SelectList(db.Listers, "ListerId", "Name");
             return View();
         }
 
@@ -50,14 +53,14 @@ namespace AutosExchange.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ListingId,ListerId,VIN,Year,Make,Model,Trim,KM,isNewCar,CarType,Color,Drivetrain,FuelType,Transmission,FuelEconomy,isAvailable,SoldPrice")] Listing listing)
         {
+            listing.ListerId = User.Identity.GetUserId();
+
             if (ModelState.IsValid)
             {
                 db.Listings.Add(listing);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            ViewBag.ListerId = new SelectList(db.Listers, "ListerId", "Name", listing.ListerId);
             return View(listing);
         }
 
@@ -73,7 +76,7 @@ namespace AutosExchange.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ListerId = new SelectList(db.Listers, "ListerId", "Name", listing.ListerId);
+            ViewBag.ListerId = User.Identity.GetUserId();
             return View(listing);
         }
 
@@ -84,13 +87,15 @@ namespace AutosExchange.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ListingId,ListerId,VIN,Year,Make,Model,Trim,KM,isNewCar,CarType,Color,Drivetrain,FuelType,Transmission,FuelEconomy,isAvailable,SoldPrice")] Listing listing)
         {
+            listing.ListerId = User.Identity.GetUserId();
             if (ModelState.IsValid)
             {
+                
                 db.Entry(listing).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ListerId = new SelectList(db.Listers, "ListerId", "Name", listing.ListerId);
+            ViewBag.ListerId = User.Identity.GetUserId();
             return View(listing);
         }
 
@@ -114,6 +119,7 @@ namespace AutosExchange.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+
             Listing listing = db.Listings.Find(id);
             db.Listings.Remove(listing);
             db.SaveChanges();

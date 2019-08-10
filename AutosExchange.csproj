@@ -171,13 +171,17 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ListersController.cs" />
     <Compile Include="Controllers\ListingsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Extensions\Extensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AspNetUser.cs">
+      <DependentUpon>AutosExchangeModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\AutosExchangeModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -194,18 +198,21 @@
       <DependentUpon>AutosExchangeModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\Lister.cs">
-      <DependentUpon>AutosExchangeModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Listing.cs">
       <DependentUpon>AutosExchangeModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ListingUser.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\aspnet-AutosExchange-4cc5736e-304a-4d32-98aa-07213ee5fd0d.mdf" />
+    <Content Include="App_Data\aspnet-AutosExchange-4cc5736e-304a-4d32-98aa-07213ee5fd0d_log.ldf">
+      <DependentUpon>aspnet-AutosExchange-4cc5736e-304a-4d32-98aa-07213ee5fd0d.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap-cyborg.css" />
+    <Content Include="Content\bootstrap-lumen.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -279,19 +286,11 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Listers\Create.cshtml" />
-    <Content Include="Views\Listers\Delete.cshtml" />
-    <Content Include="Views\Listers\Details.cshtml" />
-    <Content Include="Views\Listers\Edit.cshtml" />
-    <Content Include="Views\Listers\Index.cshtml" />
     <Content Include="Views\Listings\Create.cshtml" />
     <Content Include="Views\Listings\Delete.cshtml" />
     <Content Include="Views\Listings\Details.cshtml" />
     <Content Include="Views\Listings\Edit.cshtml" />
     <Content Include="Views\Listings\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

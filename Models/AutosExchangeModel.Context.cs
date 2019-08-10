@@ -13,10 +13,10 @@ namespace AutosExchange.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class AutosExchangeEntities : DbContext
+    public partial class Entities : DbContext
     {
-        public AutosExchangeEntities()
-            : base("name=AutosExchangeEntities")
+        public Entities()
+            : base("name=Entities")
         {
         }
     
@@ -25,7 +25,7 @@ namespace AutosExchange.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Lister> Listers { get; set; }
+        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<Listing> Listings { get; set; }
     }
 }

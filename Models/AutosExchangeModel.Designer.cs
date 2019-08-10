@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\vroma\source\repos\AutosExchange\AutosExchange\Models\AutosExchangeModel.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\vroma\OneDrive\Documents\2019 Sheridan\Summer Semester\C#\AutosExchange\AutosExchange\Models\AutosExchangeModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

@@ -15,7 +15,7 @@ namespace AutosExchange.Models
     public partial class Listing
     {
         public int ListingId { get; set; }
-        public int ListerId { get; set; }
+        public string ListerId { get; set; }
         public string VIN { get; set; }
         public int Year { get; set; }
         public string Make { get; set; }
@@ -32,6 +32,6 @@ namespace AutosExchange.Models
         public bool isAvailable { get; set; }
         public Nullable<double> SoldPrice { get; set; }
     
-        public virtual Lister Lister { get; set; }
+        public virtual AspNetUser AspNetUser { get; set; }
     }
 }

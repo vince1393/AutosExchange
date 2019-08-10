@@ -4,10 +4,10 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b0b2e33acda74f77b298c6fb6430450a" Name="Diagram1">
-        <EntityTypeShape EntityType="AutosExchangeModel.Lister" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="AutosExchangeModel.Listing" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <AssociationConnector Association="AutosExchangeModel.ListerId" ManuallyRouted="false" />
+      <Diagram DiagramId="09b4472627ca4117bb57b3e3846dab02" Name="Diagram1">
+        <EntityTypeShape EntityType="AutosExchangeModels.AspNetUser" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="AutosExchangeModels.Listing" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="AutosExchangeModels.FK_Listing_AspNetUsers" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

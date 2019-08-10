@@ -1,15 +1,13 @@
 ﻿@model IEnumerable<AutosExchange.Models.Listing>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "My Listings";
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.Title</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+
+<table class="table table-striped">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.VIN)
@@ -27,13 +25,13 @@
             @Html.DisplayNameFor(model => model.Trim)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.KM)
+            Kilometers
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.isNewCar)
+            New or Used
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CarType)
+            Type
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Color)
@@ -42,13 +40,13 @@
             @Html.DisplayNameFor(model => model.Drivetrain)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FuelType)
+            Fuel Type
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Transmission)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FuelEconomy)
+            Fuel Economy
         </th>
         <th>
             @Html.DisplayNameFor(model => model.isAvailable)
@@ -57,9 +55,8 @@
             @Html.DisplayNameFor(model => model.SoldPrice)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Lister.Name)
+            Options
         </th>
-        <th></th>
     </tr>
 
 @foreach (var item in Model) {
@@ -83,7 +80,7 @@
             @Html.DisplayFor(modelItem => item.KM)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.isNewCar)
+            @(item.isNewCar ?"Yes" : "No")
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.CarType)
@@ -104,13 +101,10 @@
             @Html.DisplayFor(modelItem => item.FuelEconomy)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.isAvailable)
+            @(item.isAvailable ? "Yes" : "No")
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.SoldPrice)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Lister.Name)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ListingId }) |
