@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="AutosExchangeModels.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AspNetUsers">
           <Key>
             <PropertyRef Name="Id" />
@@ -27,7 +27,7 @@
           <Property Name="Province" Type="nvarchar(max)" />
           <Property Name="Website" Type="nvarchar(max)" />
         </EntityType>
-        <EntityType Name="Listings">
+        <EntityType Name="Listing">
           <Key>
             <PropertyRef Name="ListingId" />
           </Key>
@@ -48,31 +48,33 @@
           <Property Name="FuelEconomy" Type="float" />
           <Property Name="isAvailable" Type="bit" Nullable="false" />
           <Property Name="SoldPrice" Type="float" />
+          <Property Name="Photo" Type="nvarchar(max)" />
         </EntityType>
         <Association Name="FK_Listing_AspNetUsers">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
-          <End Role="Listings" Type="Self.Listings" Multiplicity="*" />
+          <End Role="Listing" Type="Self.Listing" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AspNetUsers">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Listings">
+            <Dependent Role="Listing">
               <PropertyRef Name="ListerId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="AutosExchangeModelsStoreContainer">
+        <EntityContainer Name="ModelStoreContainer">
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Listings" EntityType="Self.Listings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Listing" EntityType="Self.Listing" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Listing_AspNetUsers" Association="Self.FK_Listing_AspNetUsers">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="Listings" EntitySet="Listings" />
+            <End Role="Listing" EntitySet="Listing" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="AutosExchangeModels" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="AspNetUser">
           <Key>
             <PropertyRef Name="Id" />
@@ -94,7 +96,7 @@
           <Property Name="City" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Province" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Website" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Listings" Relationship="Self.FK_Listing_AspNetUsers" FromRole="AspNetUsers" ToRole="Listings" />
+          <NavigationProperty Name="Listings" Relationship="Self.FK_Listing_AspNetUsers" FromRole="AspNetUsers" ToRole="Listing" />
         </EntityType>
         <EntityType Name="Listing">
           <Key>
@@ -117,26 +119,27 @@
           <Property Name="FuelEconomy" Type="Double" />
           <Property Name="isAvailable" Type="Boolean" Nullable="false" />
           <Property Name="SoldPrice" Type="Double" />
-          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_Listing_AspNetUsers" FromRole="Listings" ToRole="AspNetUsers" />
+          <Property Name="Photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_Listing_AspNetUsers" FromRole="Listing" ToRole="AspNetUsers" />
         </EntityType>
         <Association Name="FK_Listing_AspNetUsers">
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
-          <End Role="Listings" Type="Self.Listing" Multiplicity="*" />
+          <End Role="Listing" Type="Self.Listing" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AspNetUsers">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Listings">
+            <Dependent Role="Listing">
               <PropertyRef Name="ListerId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="AutosExchangeEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
           <EntitySet Name="Listings" EntityType="Self.Listing" />
           <AssociationSet Name="FK_Listing_AspNetUsers" Association="Self.FK_Listing_AspNetUsers">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="Listings" EntitySet="Listings" />
+            <End Role="Listing" EntitySet="Listings" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -144,9 +147,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="AutosExchangeModelsStoreContainer" CdmEntityContainer="Entities">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="AutosExchangeEntities">
           <EntitySetMapping Name="AspNetUsers">
-            <EntityTypeMapping TypeName="AutosExchangeModels.AspNetUser">
+            <EntityTypeMapping TypeName="Model.AspNetUser">
               <MappingFragment StoreEntitySet="AspNetUsers">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
@@ -169,8 +172,8 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Listings">
-            <EntityTypeMapping TypeName="AutosExchangeModels.Listing">
-              <MappingFragment StoreEntitySet="Listings">
+            <EntityTypeMapping TypeName="Model.Listing">
+              <MappingFragment StoreEntitySet="Listing">
                 <ScalarProperty Name="ListingId" ColumnName="ListingId" />
                 <ScalarProperty Name="ListerId" ColumnName="ListerId" />
                 <ScalarProperty Name="VIN" ColumnName="VIN" />
@@ -188,6 +191,7 @@
                 <ScalarProperty Name="FuelEconomy" ColumnName="FuelEconomy" />
                 <ScalarProperty Name="isAvailable" ColumnName="isAvailable" />
                 <ScalarProperty Name="SoldPrice" ColumnName="SoldPrice" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="AutosExchangeModels.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="AspNetUsers">
     <Key>
       <PropertyRef Name="Id" />
@@ -22,7 +22,7 @@
     <Property Name="Province" Type="nvarchar(max)" />
     <Property Name="Website" Type="nvarchar(max)" />
   </EntityType>
-  <EntityType Name="Listings">
+  <EntityType Name="Listing">
     <Key>
       <PropertyRef Name="ListingId" />
     </Key>
@@ -43,25 +43,26 @@
     <Property Name="FuelEconomy" Type="float" />
     <Property Name="isAvailable" Type="bit" Nullable="false" />
     <Property Name="SoldPrice" Type="float" />
+    <Property Name="Photo" Type="nvarchar(max)" />
   </EntityType>
   <Association Name="FK_Listing_AspNetUsers">
     <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
-    <End Role="Listings" Type="Self.Listings" Multiplicity="*" />
+    <End Role="Listing" Type="Self.Listing" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="AspNetUsers">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="Listings">
+      <Dependent Role="Listing">
         <PropertyRef Name="ListerId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="AutosExchangeModelsStoreContainer">
+  <EntityContainer Name="ModelStoreContainer">
     <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Listings" EntityType="Self.Listings" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Listing" EntityType="Self.Listing" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Listing_AspNetUsers" Association="Self.FK_Listing_AspNetUsers">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-      <End Role="Listings" EntitySet="Listings" />
+      <End Role="Listing" EntitySet="Listing" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

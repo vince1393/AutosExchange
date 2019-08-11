@@ -10,6 +10,9 @@
 <table class="table table-striped">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.Photo)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.VIN)
         </th>
         <th>
@@ -49,69 +52,74 @@
             Fuel Economy
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.isAvailable)
+            Still Available
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.SoldPrice)
+           Price
         </th>
         <th>
             Options
         </th>
+
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.VIN)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Year)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Make)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Model)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Trim)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.KM)
-        </td>
-        <td>
-            @(item.isNewCar ?"Yes" : "No")
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CarType)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Color)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Drivetrain)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FuelType)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Transmission)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FuelEconomy)
-        </td>
-        <td>
-            @(item.isAvailable ? "Yes" : "No")
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SoldPrice)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ListingId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ListingId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ListingId })
-        </td>
-    </tr>
+<tr>
+    <td>
+        <img src="@item.Photo" style="max-height:200px; width: auto;" />
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.VIN)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Year)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Make)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Model)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Trim)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.KM)
+    </td>
+    <td>
+        @(item.isNewCar ? "Yes" : "No")
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.CarType)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Color)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Drivetrain)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.FuelType)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Transmission)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.FuelEconomy)
+    </td>
+    <td>
+        @(item.isAvailable ? "Yes" : "No")
+    </td>
+    <td>
+        @(item.SoldPrice.HasValue ? item.SoldPrice.ToString() : "Please Contact")
+    </td>
+
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.ListingId }) |
+        @Html.ActionLink("Details", "Details", new { id = item.ListingId }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.ListingId })
+    </td>
+</tr>
 }
 
 </table>

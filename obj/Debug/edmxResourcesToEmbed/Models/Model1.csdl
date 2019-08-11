@@ -1,10 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="Listing" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+<Schema Namespace="AutosExchangeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="AspNetUser">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="City" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Province" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Website" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
     <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
     <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -16,54 +21,51 @@
     <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
     <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
     <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="City" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Province" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Website" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Listings" Relationship="Self.CONS_aspusers" FromRole="AspNetUsers" ToRole="Listing" />
+    <NavigationProperty Name="Listings" Relationship="Self.FK_dbo_Listings_dbo_AspNetUsers1_AspNetUser_Id" FromRole="AspNetUsers" ToRole="Listings" />
   </EntityType>
   <EntityType Name="Listing">
     <Key>
       <PropertyRef Name="ListingId" />
     </Key>
     <Property Name="ListingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="ListerId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="VIN" Type="String" MaxLength="17" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ListerId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="VIN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Year" Type="Int32" Nullable="false" />
-    <Property Name="Make" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Trim" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Make" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Model" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Trim" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="KM" Type="Int32" Nullable="false" />
     <Property Name="isNewCar" Type="Boolean" Nullable="false" />
-    <Property Name="CarType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Drivetrain" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="FuelType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Transmission" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CarType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Color" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Drivetrain" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FuelType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Transmission" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="FuelEconomy" Type="Double" />
     <Property Name="isAvailable" Type="Boolean" Nullable="false" />
     <Property Name="SoldPrice" Type="Double" />
-    <NavigationProperty Name="AspNetUser" Relationship="Self.CONS_aspusers" FromRole="Listing" ToRole="AspNetUsers" />
+    <Property Name="AspNetUser_Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_Listings_dbo_AspNetUsers1_AspNetUser_Id" FromRole="Listings" ToRole="AspNetUsers" />
   </EntityType>
-  <Association Name="CONS_aspusers">
-    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
-    <End Role="Listing" Type="Self.Listing" Multiplicity="*" />
+  <Association Name="FK_dbo_Listings_dbo_AspNetUsers1_AspNetUser_Id">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="0..1" />
+    <End Role="Listings" Type="Self.Listing" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="AspNetUsers">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="Listing">
-        <PropertyRef Name="ListerId" />
+      <Dependent Role="Listings">
+        <PropertyRef Name="AspNetUser_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="NewEntities" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="DefaultConnectionEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
     <EntitySet Name="Listings" EntityType="Self.Listing" />
-    <AssociationSet Name="CONS_aspusers" Association="Self.CONS_aspusers">
+    <AssociationSet Name="FK_dbo_Listings_dbo_AspNetUsers1_AspNetUser_Id" Association="Self.FK_dbo_Listings_dbo_AspNetUsers1_AspNetUser_Id">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-      <End Role="Listing" EntitySet="Listings" />
+      <End Role="Listings" EntitySet="Listings" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

@@ -1,10 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="ListingStoreContainer" CdmEntityContainer="NewEntities">
+  <EntityContainerMapping StorageEntityContainer="AutosExchangeModelStoreContainer" CdmEntityContainer="DefaultConnectionEntities">
     <EntitySetMapping Name="AspNetUsers">
-      <EntityTypeMapping TypeName="Listing.AspNetUser">
+      <EntityTypeMapping TypeName="AutosExchangeModel.AspNetUser">
         <MappingFragment StoreEntitySet="AspNetUsers">
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Province" ColumnName="Province" />
+          <ScalarProperty Name="Website" ColumnName="Website" />
           <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
           <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
@@ -16,17 +21,12 @@
           <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
           <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
           <ScalarProperty Name="UserName" ColumnName="UserName" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Address" ColumnName="Address" />
-          <ScalarProperty Name="City" ColumnName="City" />
-          <ScalarProperty Name="Province" ColumnName="Province" />
-          <ScalarProperty Name="Website" ColumnName="Website" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Listings">
-      <EntityTypeMapping TypeName="Listing.Listing">
-        <MappingFragment StoreEntitySet="Listing">
+      <EntityTypeMapping TypeName="AutosExchangeModel.Listing">
+        <MappingFragment StoreEntitySet="Listings">
           <ScalarProperty Name="ListingId" ColumnName="ListingId" />
           <ScalarProperty Name="ListerId" ColumnName="ListerId" />
           <ScalarProperty Name="VIN" ColumnName="VIN" />
@@ -44,6 +44,8 @@
           <ScalarProperty Name="FuelEconomy" ColumnName="FuelEconomy" />
           <ScalarProperty Name="isAvailable" ColumnName="isAvailable" />
           <ScalarProperty Name="SoldPrice" ColumnName="SoldPrice" />
+          <ScalarProperty Name="AspNetUser_Id" ColumnName="AspNetUser_Id" />
+          <ScalarProperty Name="Photo" ColumnName="Photo" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

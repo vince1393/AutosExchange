@@ -22,7 +22,6 @@ namespace AutosExchange.Controllers
             var currentUser = User.Identity.GetUserId();
             var listings = db.Listings.Where(l=> l.ListerId == currentUser);
              return View(listings.ToList());
-            //return View();
         }
 
         // GET: Listings/Details/5
@@ -85,7 +84,7 @@ namespace AutosExchange.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ListingId,ListerId,VIN,Year,Make,Model,Trim,KM,isNewCar,CarType,Color,Drivetrain,FuelType,Transmission,FuelEconomy,isAvailable,SoldPrice")] Listing listing)
+        public ActionResult Edit([Bind(Include = "ListingId,ListerId,VIN,Year,Make,Model,Trim,KM,isNewCar,CarType,Color,Drivetrain,FuelType,Transmission,FuelEconomy,isAvailable,SoldPrice,Photo")] Listing listing)
         {
             listing.ListerId = User.Identity.GetUserId();
             if (ModelState.IsValid)

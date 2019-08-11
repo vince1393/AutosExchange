@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="AutosExchangeModels" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="AspNetUser">
     <Key>
       <PropertyRef Name="Id" />
@@ -21,7 +21,7 @@
     <Property Name="City" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Province" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Website" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Listings" Relationship="Self.FK_Listing_AspNetUsers" FromRole="AspNetUsers" ToRole="Listings" />
+    <NavigationProperty Name="Listings" Relationship="Self.FK_Listing_AspNetUsers" FromRole="AspNetUsers" ToRole="Listing" />
   </EntityType>
   <EntityType Name="Listing">
     <Key>
@@ -44,26 +44,27 @@
     <Property Name="FuelEconomy" Type="Double" />
     <Property Name="isAvailable" Type="Boolean" Nullable="false" />
     <Property Name="SoldPrice" Type="Double" />
-    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_Listing_AspNetUsers" FromRole="Listings" ToRole="AspNetUsers" />
+    <Property Name="Photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_Listing_AspNetUsers" FromRole="Listing" ToRole="AspNetUsers" />
   </EntityType>
   <Association Name="FK_Listing_AspNetUsers">
     <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
-    <End Role="Listings" Type="Self.Listing" Multiplicity="*" />
+    <End Role="Listing" Type="Self.Listing" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="AspNetUsers">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="Listings">
+      <Dependent Role="Listing">
         <PropertyRef Name="ListerId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="AutosExchangeEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
     <EntitySet Name="Listings" EntityType="Self.Listing" />
     <AssociationSet Name="FK_Listing_AspNetUsers" Association="Self.FK_Listing_AspNetUsers">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-      <End Role="Listings" EntitySet="Listings" />
+      <End Role="Listing" EntitySet="Listings" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

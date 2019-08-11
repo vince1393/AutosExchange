@@ -31,6 +31,7 @@ namespace AutosExchange.Models
         public Nullable<double> FuelEconomy { get; set; }
         public bool isAvailable { get; set; }
         public Nullable<double> SoldPrice { get; set; }
+        public string Photo { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
     }

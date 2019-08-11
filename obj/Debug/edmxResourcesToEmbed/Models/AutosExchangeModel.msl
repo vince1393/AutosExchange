@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="AutosExchangeModelsStoreContainer" CdmEntityContainer="Entities">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="AutosExchangeEntities">
     <EntitySetMapping Name="AspNetUsers">
-      <EntityTypeMapping TypeName="AutosExchangeModels.AspNetUser">
+      <EntityTypeMapping TypeName="Model.AspNetUser">
         <MappingFragment StoreEntitySet="AspNetUsers">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Email" ColumnName="Email" />
@@ -25,8 +25,8 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Listings">
-      <EntityTypeMapping TypeName="AutosExchangeModels.Listing">
-        <MappingFragment StoreEntitySet="Listings">
+      <EntityTypeMapping TypeName="Model.Listing">
+        <MappingFragment StoreEntitySet="Listing">
           <ScalarProperty Name="ListingId" ColumnName="ListingId" />
           <ScalarProperty Name="ListerId" ColumnName="ListerId" />
           <ScalarProperty Name="VIN" ColumnName="VIN" />
@@ -44,6 +44,7 @@
           <ScalarProperty Name="FuelEconomy" ColumnName="FuelEconomy" />
           <ScalarProperty Name="isAvailable" ColumnName="isAvailable" />
           <ScalarProperty Name="SoldPrice" ColumnName="SoldPrice" />
+          <ScalarProperty Name="Photo" ColumnName="Photo" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

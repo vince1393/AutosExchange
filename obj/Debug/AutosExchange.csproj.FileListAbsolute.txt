@@ -1,3 +1,4 @@
+C:\Users\vroma\OneDrive\Documents\2019 Sheridan\Summer Semester\C#\AutosExchange\AutosExchange\obj\Debug\AutosExchange.csproj.CoreCompileInputs.cache
 C:\Users\vroma\OneDrive\Documents\2019 Sheridan\Summer Semester\C#\AutosExchange\AutosExchange\bin\AutosExchange.dll.config
 C:\Users\vroma\OneDrive\Documents\2019 Sheridan\Summer Semester\C#\AutosExchange\AutosExchange\bin\AutosExchange.dll
 C:\Users\vroma\OneDrive\Documents\2019 Sheridan\Summer Semester\C#\AutosExchange\AutosExchange\bin\AutosExchange.pdb
@@ -98,8 +99,7 @@ C:\Users\vroma\OneDrive\Documents\2019 Sheridan\Summer Semester\C#\AutosExchange
 C:\Users\vroma\OneDrive\Documents\2019 Sheridan\Summer Semester\C#\AutosExchange\AutosExchange\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\vroma\OneDrive\Documents\2019 Sheridan\Summer Semester\C#\AutosExchange\AutosExchange\bin\Microsoft.Owin.Security.OAuth.xml
 C:\Users\vroma\OneDrive\Documents\2019 Sheridan\Summer Semester\C#\AutosExchange\AutosExchange\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\vroma\OneDrive\Documents\2019 Sheridan\Summer Semester\C#\AutosExchange\AutosExchange\obj\Debug\AutosExchange.csprojAssemblyReference.cache
-C:\Users\vroma\OneDrive\Documents\2019 Sheridan\Summer Semester\C#\AutosExchange\AutosExchange\obj\Debug\AutosExchange.csproj.CoreCompileInputs.cache
 C:\Users\vroma\OneDrive\Documents\2019 Sheridan\Summer Semester\C#\AutosExchange\AutosExchange\obj\Debug\AutosExchange.csproj.CopyComplete
 C:\Users\vroma\OneDrive\Documents\2019 Sheridan\Summer Semester\C#\AutosExchange\AutosExchange\obj\Debug\AutosExchange.dll
 C:\Users\vroma\OneDrive\Documents\2019 Sheridan\Summer Semester\C#\AutosExchange\AutosExchange\obj\Debug\AutosExchange.pdb
+C:\Users\vroma\OneDrive\Documents\2019 Sheridan\Summer Semester\C#\AutosExchange\AutosExchange\obj\Debug\AutosExchange.csprojAssemblyReference.cache

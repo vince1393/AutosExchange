@@ -8,6 +8,13 @@
 
     <table class="table table-striped">
         <tr>
+
+            <th>
+               
+            </th>
+            <th>
+                Price
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.VIN)
             </th>
@@ -69,6 +76,12 @@
             if (item.isAvailable)
             {
     <tr>
+        <td>
+            <img src="@item.Photo" alt="" style="max-height:200px; width:auto;" />
+        </td>
+        <td>
+            @(item.SoldPrice.HasValue ? item.SoldPrice.ToString() : "Please Contact")
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.VIN)
         </td>

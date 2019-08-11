@@ -44,7 +44,8 @@ namespace AutosExchange.Controllers
                                                     Transmission = l.Transmission,
                                                     FuelEconomy = l.FuelEconomy,
                                                     isAvailable = l.isAvailable,
-                                                    SoldPrice = l.SoldPrice
+                                                    SoldPrice = l.SoldPrice,
+                                                    Photo= l.Photo
                           };
 
             return View(listings.ToList());
@@ -52,7 +53,7 @@ namespace AutosExchange.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Group Project for PROG37721 built by Vincent Romani and Oleh Vytvitskyy using ASP.Net.";
 
             return View();
         }
