@@ -66,7 +66,7 @@
     </div>
 
     <div class="form-group">
-        New Car
+        @Html.LabelFor(model => model.isNewCar,"New Car", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             <div class="checkbox">
                 @Html.EditorFor(model => model.isNewCar)
@@ -76,7 +76,7 @@
     </div>
 
     <div class="form-group">
-        Vehicle Type
+        @Html.LabelFor(model => model.CarType, "Vehicle Type", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.CarType, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.CarType, "", new { @class = "text-danger" })
@@ -100,7 +100,7 @@
     </div>
 
     <div class="form-group">
-        Fuel Type
+        @Html.LabelFor(model => model.FuelType, "Fuel Type", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.FuelType, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.FuelType, "", new { @class = "text-danger" })
@@ -116,7 +116,7 @@
     </div>
 
     <div class="form-group">
-        Fuel Economy
+        @Html.LabelFor(model => model.FuelEconomy, "Fuel Economy", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.FuelEconomy, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.FuelEconomy, "", new { @class = "text-danger" })
@@ -124,7 +124,7 @@
     </div>
 
     <div class="form-group">
-        Available
+        @Html.LabelFor(model => model.isAvailable, "Available", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             <div class="checkbox">
                 @Html.CheckBoxFor(model => model.isAvailable, new { @checked = "checked" })
@@ -134,7 +134,7 @@
     </div>
 
     <div class="form-group">
-        Price
+        @Html.LabelFor(model => model.SoldPrice, "Price", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.SoldPrice, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.SoldPrice, "", new { @class = "text-danger" })
@@ -142,7 +142,7 @@
     </div>
 
     <div class="form-group">
-        Photo URL
+        @Html.LabelFor(model => model.Photo, "Photo URL", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.Photo, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.Photo, "", new { @class = "text-danger" })

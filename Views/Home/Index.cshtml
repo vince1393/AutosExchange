@@ -1,142 +1,182 @@
 ﻿@model IEnumerable<AutosExchange.Models.ListingUser>
 
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "New & Used Vehicles for Sale";
 }
 
 <h2>@ViewBag.Title</h2>
+<style>
+    img{
+    align-self: center;
+    max-width: 350px;
+    height:auto;
+    max-height: 40vh;
+    margin: 5px 5px;
+    border-radius: 7px;
+    transition: ease all .7s;
+    }
 
-    <table class="table table-striped">
-        <tr>
+    .bold{
+    font-weight: bold;
+    margin: 0px;
+    font-size: 1.1em;
+    }
 
-            <th>
-               
-            </th>
-            <th>
+    .fact{
+    align-self: center;
+    margin: 3px;
+    font-size: 1.2em;
+    transition: ease all .5s;
+    }
+
+    .mat-tab-body{
+    border: grey 1px solid;
+    border-radius: 8px;
+    }
+
+    .tile{
+    border: lightgrey 2px solid;
+    border-radius: 8px;
+    display:flex;
+    flex-direction: row;
+    margin:20px;
+    }
+
+        .factContainer{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        justify-content: center;
+        flex-direction: column;
+        margin: 5px 0px;
+        width:100%;
+    }
+
+
+
+</style>
+@foreach (var item in Model)
+{
+    if (item.isAvailable)
+    {
+<div class="tile">
+    <img src="@item.Photo" alt=""  width:auto;" />
+    <div class="factContainer">
+        <div class="fact">
+            <p class="bold">
                 Price
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.VIN)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Year)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Make)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Model)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Trim)
-            </th>
-            <th>
-                Kilometers
-            </th>
-            <th>
-                New or Used
-            </th>
-            <th>
-                Type
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Color)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Drivetrain)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Transmission)
-            </th>
-            <th>
-                Fuel Economy
-            </th>
-            <th>
-                Fuel Type
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Address)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.City)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Province)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Website)
-            </th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
-            if (item.isAvailable)
-            {
-    <tr>
-        <td>
-            <img src="@item.Photo" alt="" style="max-height:200px; width:auto;" />
-        </td>
-        <td>
+            </p>
             @(item.SoldPrice.HasValue ? item.SoldPrice.ToString() : "Please Contact")
-        </td>
-        <td>
+            </div>
+        <div class="fact">
+            <p class="bold">
+                @Html.DisplayNameFor(model => model.VIN)
+            </p>
             @Html.DisplayFor(modelItem => item.VIN)
-        </td>
-        <td>
+        </div>
+        <div class="fact">
+            <p class="bold">
+                @Html.DisplayNameFor(model => model.Year)
+            </p>
             @Html.DisplayFor(modelItem => item.Year)
-        </td>
-        <td>
+        </div>
+        <div class="fact">
+            <p class="bold">
+                @Html.DisplayNameFor(model => model.Make)
+            </p>
             @Html.DisplayFor(modelItem => item.Make)
-        </td>
-        <td>
+        </div>
+        <div class="fact">
+            <p class="bold">
+                @Html.DisplayNameFor(model => model.Model)
+            </p>
             @Html.DisplayFor(modelItem => item.Model)
-        </td>
-        <td>
+        </div>
+        <div class="fact">
+            <p class="bold">
+                @Html.DisplayNameFor(model => model.Trim)
+            </p>
             @Html.DisplayFor(modelItem => item.Trim)
-        </td>
-        <td>
+        </div>
+        <div class="fact">
+            <p class="bold">
+                Kilometers
+            </p>
             @(item.KM.ToString() + "km")
-        </td>
-        <td>
+        </div>
+        <div class="fact">
+            <p class="bold">
+                New or Used
+            </p>
             @(item.isNewCar ? "New" : "Used")
-        </td>
-        <td>
+        </div>
+        <div class="fact">
+            <p class="bold">
+                Type
+            </p>
             @Html.DisplayFor(modelItem => item.CarType)
-        </td>
-        <td>
+        </div>
+        <div class="fact">
+            <p class="bold">
+                @Html.DisplayNameFor(model => model.Color)
+            </p>
             @Html.DisplayFor(modelItem => item.Color)
-        </td>
-        <td>
+        </div>
+        <div class="fact">
+            <p class="bold">
+                @Html.DisplayNameFor(model => model.Drivetrain)
+            </p>
             @Html.DisplayFor(modelItem => item.Drivetrain)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FuelType)
-        </td>
-        <td>
+        </div>
+        <div class="fact">
+            <p class="bold">
+                @Html.DisplayNameFor(model => model.Transmission)
+            </p>
             @Html.DisplayFor(modelItem => item.Transmission)
-        </td>
-        <td>
-            @(item.FuelEconomy.ToString() + " litres/100km")
-        </td>
-        <td>
+        </div>
+        <div class="fact">
+            <p class="bold">
+                Fuel Economy
+            </p>
+            @(item.FuelEconomy.ToString() + " l/100km")
+        </div>
+        <div class="fact">
+            <p class="bold">
+                Fuel Type
+            </p>
+            @Html.DisplayFor(modelItem => item.FuelType)
+        </div>
+        <div class="fact">
+            <p class="bold">
+                @Html.DisplayNameFor(model => model.Name)
+            </p>
             @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
+        </div>
+        <div class="fact">
+            <p class="bold">
+                @Html.DisplayNameFor(model => model.Address)
+            </p>
             @Html.DisplayFor(modelItem => item.Address)
-        </td>
-        <td>
+        </div>
+        <div class="fact">
+            <p class="bold">
+                @Html.DisplayNameFor(model => model.City)
+            </p>
             @Html.DisplayFor(modelItem => item.City)
-        </td>
-        <td>
+        </div>
+        <div class="fact">
+            <p class="bold">
+                @Html.DisplayNameFor(model => model.Province)
+            </p>
             @Html.DisplayFor(modelItem => item.Province)
-        </td>
-        <td>
+        </div>
+        <div class="fact">
+            <p class="bold">
+                @Html.DisplayNameFor(model => model.Website)
+            </p>
             @Html.DisplayFor(modelItem => item.Website)
-        </td>
-    </tr>
-                }
-            }
-    </table>
+        </div>
+        </div>
+    </div>
+    }
+}
